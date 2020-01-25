@@ -12,5 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout.default');
+});
+
+Route::group(['prefix' => 'laravel-crud'], function () {
+    Route::get('/', 'CrudController@index')->name('crud');
+    Route::get('/search', 'CrudController@index')->name('crud');
+    Route::get( '/create', 'CrudController@create')->name('create');
+    Route::post('create', 'CrudController@store')->name('store');
+    Route::get('edit/{id}', 'CrudController@edit')->name('edit');
+    Route::post('update/{id}', 'CrudController@update')->name('update');
+    Route::delete('delete/{id}', 'CrudController@destroy');
 });
